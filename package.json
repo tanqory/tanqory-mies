@@ -1,0 +1,58 @@
+{
+  "name": "tanqory-mies",
+  "version": "0.1.0",
+  "description": "Tanqory Mies - Cross-platform Design System for Web & Mobile",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "workspaces": [
+    "packages/*",
+    "examples/*",
+    "docs/*",
+    "eslint-plugin-tanqory-mies"
+  ],
+  "scripts": {
+    "build": "pnpm -r --parallel build",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mdx --fix",
+    "lint:check": "eslint . --ext .ts,.tsx,.js,.jsx,.mdx",
+    "lint:packages": "pnpm -r --parallel lint",
+    "typecheck": "pnpm -r --parallel typecheck",
+    "test": "pnpm -r --parallel test",
+    "clean": "pnpm -r --parallel clean",
+    "dev": "pnpm -r --parallel dev",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,mdx}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,mdx}\"",
+    "release": "pnpm changeset publish",
+    "changeset": "changeset",
+    "version-packages": "changeset version"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.27.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^15.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.33.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-native": "^4.1.0",
+    "eslint-plugin-tanqory-mies": "workspace:*",
+    "prettier": "^3.2.0",
+    "typescript": "^5.3.0"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "react": "18 || 19",
+        "react-native": "0.75"
+      }
+    }
+  }
+}

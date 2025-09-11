@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@tanqory/mies-tokens": ["./packages/mies-tokens/src"],
+      "@tanqory/mies-core-web": ["./packages/mies-core-web/src"],
+      "@tanqory/mies-core-native": ["./packages/mies-core-native/src"],
+      "@tanqory/mies-icons": ["./packages/mies-icons/src"],
+      "@tanqory/mies-tailwind": ["./packages/mies-tailwind/src"]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    ".next",
+    "coverage",
+    "android",
+    "ios"
+  ]
+}

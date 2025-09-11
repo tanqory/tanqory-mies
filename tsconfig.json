@@ -1,0 +1,86 @@
+{
+  "compilerOptions": {
+    // Target and Module
+    "target": "ES2020",
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "moduleResolution": "bundler",
+    
+    // Strict Type Checking
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "exactOptionalPropertyTypes": true,
+    
+    // Module Resolution
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    
+    // Emit
+    "noEmit": true,
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    
+    // Interop Constraints
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    
+    // JSX
+    "jsx": "preserve",
+    "jsxImportSource": "react",
+    
+    // Advanced
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "noImplicitUseStrict": false,
+    "noStrictGenericChecks": false,
+    "useDefineForClassFields": true,
+    
+    // Paths (for monorepo workspace resolution)
+    "baseUrl": ".",
+    "paths": {
+      "@tanqory/mies-tokens": ["./packages/mies-tokens/src"],
+      "@tanqory/mies-core-web": ["./packages/mies-core-web/src"],
+      "@tanqory/mies-core-native": ["./packages/mies-core-native/src"],
+      "@tanqory/mies-icons": ["./packages/mies-icons/src"],
+      "@tanqory/mies-tailwind": ["./packages/mies-tailwind/src"]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.json"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    ".next",
+    ".expo",
+    "coverage"
+  ],
+  "references": [
+    { "path": "./packages/mies-tokens" },
+    { "path": "./packages/mies-core-web" },
+    { "path": "./packages/mies-core-native" },
+    { "path": "./packages/mies-icons" },
+    { "path": "./packages/mies-tailwind" },
+    { "path": "./examples/web-app" },
+    { "path": "./examples/mobile-app" },
+    { "path": "./docs/site" },
+    { "path": "./eslint-plugin-tanqory-mies" }
+  ]
+}
