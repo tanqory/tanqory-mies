@@ -1,0 +1,132 @@
+# Foundations
+
+The foundation layer defines the visual building blocks of the Tanqory Mies design system. These elements work together to create a consistent, minimalist aesthetic across all platforms.
+
+## Design Principles
+
+The Tanqory Mies design system is built on core principles inspired by Ludwig Mies van der Rohe's architectural philosophy:
+
+### Less is More
+Every element serves a functional purpose. Decorative elements are eliminated in favor of clarity and purpose.
+
+### Functional Simplicity
+Components focus on usability and accessibility rather than visual complexity.
+
+### Consistent Constraints
+Design constraints ensure consistency across platforms and applications.
+
+## Visual Elements
+
+### Colors
+A minimal palette of three colors ensures focus and clarity:
+- **Brand**: #E1FF00 (Electric lime)
+- **Black**: #000000 (Pure black)
+- **White**: #FFFFFF (Pure white)
+
+[→ Color Guidelines](/foundations/colors)
+
+### Typography
+Inter font family provides excellent readability across all sizes and platforms.
+
+[→ Typography System](/foundations/typography)
+
+### Spacing
+A systematic 8-point grid creates visual rhythm and consistency.
+
+[→ Spacing Scale](/foundations/spacing)
+
+### Layout
+Grid systems and layout principles for organizing content effectively.
+
+[→ Layout Guidelines](/foundations/layout)
+
+## Design Constraints
+
+### No Shadows
+All components use flat design without drop shadows or elevation effects.
+
+```css
+/* ❌ Avoid */
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+/* ✅ Use */
+box-shadow: none;
+```
+
+### No Border Radius
+Sharp, geometric edges maintain visual consistency.
+
+```css
+/* ❌ Avoid */
+border-radius: 8px;
+
+/* ✅ Use */
+border-radius: 0;
+```
+
+### No Gradients
+Solid colors ensure consistency and performance.
+
+```css
+/* ❌ Avoid */
+background: linear-gradient(45deg, #E1FF00, #ffffff);
+
+/* ✅ Use */
+background-color: #E1FF00;
+```
+
+## Cross-Platform Consistency
+
+Design tokens ensure the same visual appearance across Web and Mobile:
+
+### Web (CSS Variables)
+```css
+:root {
+  --mies-color-brand: #E1FF00;
+  --mies-spacing-16: 1rem;
+  --mies-font-family: Inter, sans-serif;
+}
+```
+
+### Mobile (JSON Tokens)
+```json
+{
+  "colors": {
+    "brand": "#E1FF00"
+  },
+  "spacing": {
+    "16": 16
+  },
+  "typography": {
+    "fontFamily": "Inter"
+  }
+}
+```
+
+## Accessibility
+
+The design system prioritizes accessibility:
+
+- **High contrast** between text and backgrounds
+- **Consistent focus states** with brand color outlines
+- **Semantic HTML** structure in web components
+- **Screen reader** support for all interactive elements
+- **Touch targets** meet minimum size requirements on mobile
+
+## Performance
+
+Design constraints improve performance:
+
+- **No complex visual effects** reduce rendering overhead
+- **Minimal color palette** reduces asset size
+- **System fonts** eliminate font loading delays
+- **CSS variables** enable efficient theming
+
+## Next Steps
+
+Explore the specific foundation elements:
+
+- [Colors](/foundations/colors) - Brand palette and usage
+- [Typography](/foundations/typography) - Font system and hierarchy
+- [Spacing](/foundations/spacing) - Spacing scale and grid
+- [Layout](/foundations/layout) - Layout principles and structure

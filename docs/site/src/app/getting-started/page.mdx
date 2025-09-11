@@ -1,0 +1,90 @@
+# Getting Started
+
+Welcome to the Tanqory Mies design system. This guide will help you install and configure the design system for your Web or Mobile application.
+
+## Overview
+
+The Tanqory Mies design system provides a comprehensive set of components, tokens, and icons that work across Web and Mobile platforms. Built with the philosophy of "less is more," it enforces design constraints that ensure consistency and simplicity.
+
+### Key Principles
+
+- **Zero-JS by default** - Components are React Server Components when possible
+- **No visual effects** - No shadows, gradients, or border radius
+- **Cross-platform consistency** - Same tokens work on Web and Mobile
+- **E-commerce focused** - Components and icons designed for commerce apps
+
+### Architecture
+
+The design system consists of four main packages:
+
+- `@tanqory/mies-tokens` - Design tokens (colors, spacing, typography)
+- `@tanqory/mies-core-web` - React components for Web/Next.js
+- `@tanqory/mies-core-native` - React Native components for Mobile
+- `@tanqory/mies-icons` - Cross-platform icon library
+- `@tanqory/mies-tailwind` - Tailwind CSS preset for Web
+
+## Quick Start
+
+Choose your platform to get started:
+
+### Web Development
+
+For Next.js applications with React Server Components:
+
+```bash
+npm install @tanqory/mies-core-web @tanqory/mies-tailwind @tanqory/mies-tokens @tanqory/mies-icons
+```
+
+[→ Web Installation Guide](/getting-started/web)
+
+### Mobile Development
+
+For React Native applications with StyleSheet:
+
+```bash
+npm install @tanqory/mies-core-native @tanqory/mies-tokens @tanqory/mies-icons react-native-svg
+```
+
+[→ Mobile Installation Guide](/getting-started/mobile)
+
+## Design Tokens
+
+All platforms use the same design tokens for consistency:
+
+- **Colors**: Brand (#E1FF00), Black (#000000), White (#FFFFFF)
+- **Typography**: Inter font family with xs-2xl scale
+- **Spacing**: 4, 8, 12, 16, 24, 32 pixel scale
+- **Layout**: Grid system with consistent margins and padding
+
+## Component Philosophy
+
+Components are designed with specific constraints:
+
+1. **Functional over decorative** - Every element serves a purpose
+2. **Consistent spacing** - Using the defined spacing scale
+3. **Minimal color palette** - Brand, black, and white only
+4. **Sharp edges** - No border radius for geometric clarity
+5. **Flat design** - No shadows or depth effects
+
+## Browser Support
+
+### Web
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
+
+### Mobile
+- iOS 13.0+
+- Android API Level 21+ (5.0)
+
+## TypeScript Support
+
+All packages include full TypeScript definitions for better developer experience and type safety.
+
+## Next Steps
+
+- [Web Setup Guide](/getting-started/web) - Configure for Next.js
+- [Mobile Setup Guide](/getting-started/mobile) - Configure for React Native  
+- [Design Foundations](/foundations) - Learn about colors, typography, and spacing
+- [Components](/components/web) - Explore available components

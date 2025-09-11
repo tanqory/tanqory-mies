@@ -1,0 +1,251 @@
+# Web Installation
+
+Set up the Tanqory Mies design system in your Next.js application with React Server Components and Tailwind CSS.
+
+## Installation
+
+Install the required packages:
+
+```bash
+npm install @tanqory/mies-core-web @tanqory/mies-tailwind @tanqory/mies-tokens @tanqory/mies-icons
+# or
+pnpm add @tanqory/mies-core-web @tanqory/mies-tailwind @tanqory/mies-tokens @tanqory/mies-icons
+```
+
+## Configuration
+
+### 1. Import Design Tokens
+
+Add the design tokens CSS to your global stylesheet:
+
+```css
+/* app/globals.css or styles/globals.css */
+@import '@tanqory/mies-tokens/tokens.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+### 2. Configure Tailwind CSS
+
+Create or update your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { miesPreset } from '@tanqory/mies-tailwind';
+
+const config: Config = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  presets: [miesPreset],
+};
+
+export default config;
+```
+
+### 3. Update Next.js Configuration
+
+Configure Next.js to transpile the design system packages:
+
+```javascript
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  transpilePackages: [
+    '@tanqory/mies-core-web',
+    '@tanqory/mies-tailwind',
+    '@tanqory/mies-tokens',
+    '@tanqory/mies-icons'
+  ],
+  experimental: {
+    optimizePackageImports: [
+      '@tanqory/mies-core-web',
+      '@tanqory/mies-icons'
+    ]
+  }
+};
+
+module.exports = nextConfig;
+```
+
+## Usage Examples
+
+### Basic Components
+
+```tsx
+import { Button } from '@tanqory/mies-core-web/button';
+import { Card, CardHeader, CardContent } from '@tanqory/mies-core-web/card';
+import { CartIcon } from '@tanqory/mies-icons/web';
+
+export default function MyPage() {
+  return (
+    <Card>
+      <CardHeader>
+        <h2 className="text-lg font-sans text-black">Welcome</h2>
+      </CardHeader>
+      
+      <CardContent>
+        <p className="text-base font-sans text-black mb-16">
+          Get started with the Tanqory Mies design system.
+        </p>
+        
+        <div className="flex items-center gap-12">
+          <Button variant="primary">
+            Get Started
+          </Button>
+          <CartIcon size={20} className="text-brand" />
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+### Layout Components
+
+```tsx
+import { 
+  Page, 
+  Header, 
+  Container, 
+  Section 
+} from '@tanqory/mies-core-web/layout';
+
+export default function Layout({ children }) {
+  return (
+    <Page>
+      <Header sticky>
+        <Container>
+          <nav className="flex items-center justify-between">
+            <h1 className="text-xl font-sans text-black">My App</h1>
+          </nav>
+        </Container>
+      </Header>
+      
+      <Section>
+        <Container>
+          {children}
+        </Container>
+      </Section>
+    </Page>
+  );
+}
+```
+
+### Server Actions Form
+
+```tsx
+import { 
+  Form, 
+  FormField, 
+  Label, 
+  Input, 
+  FormActions 
+} from '@tanqory/mies-core-web/form';
+import { Button } from '@tanqory/mies-core-web/button';
+
+async function handleSubmit(formData: FormData) {
+  'use server';
+  
+  const name = formData.get('name') as string;
+  const email = formData.get('email') as string;
+  
+  // Process form submission
+  console.log({ name, email });
+}
+
+export default function ContactForm() {
+  return (
+    <Form action={handleSubmit}>
+      <FormField>
+        <Label required>Name</Label>
+        <Input name="name" required />
+      </FormField>
+      
+      <FormField>
+        <Label required>Email</Label>
+        <Input name="email" type="email" required />
+      </FormField>
+      
+      <FormActions>
+        <Button type="submit" variant="primary">
+          Submit
+        </Button>
+      </FormActions>
+    </Form>
+  );
+}
+```
+
+## Available Tailwind Classes
+
+The Mies Tailwind preset provides these custom classes:
+
+### Colors
+- `bg-brand` - Brand background (#E1FF00)
+- `text-brand` - Brand text color
+- `border-brand` - Brand border color
+
+### Spacing
+- `p-4`, `m-4` - 4px padding/margin
+- `p-8`, `m-8` - 8px padding/margin
+- `p-12`, `m-12` - 12px padding/margin
+- `p-16`, `m-16` - 16px padding/margin
+- `p-24`, `m-24` - 24px padding/margin
+- `p-32`, `m-32` - 32px padding/margin
+
+### Borders
+- `border-1` - 1px border width
+
+### Typography
+- `text-xs` through `text-2xl` - Design system font sizes
+- `font-sans` - Inter font family
+
+## Design Constraints
+
+The Tailwind preset enforces these design constraints:
+
+- **No rounded corners** - `border-radius` is disabled
+- **No shadows** - `box-shadow` is disabled  
+- **No gradients** - `background-image` is disabled
+- **Limited colors** - Only brand, black, white, transparent
+- **Consistent spacing** - Only design system spacing values
+
+## Tree Shaking
+
+Import only the components you need for optimal bundle size:
+
+```tsx
+// ✅ Good - tree-shakable imports
+import { Button } from '@tanqory/mies-core-web/button';
+import { Card } from '@tanqory/mies-core-web/card';
+
+// ❌ Avoid - imports entire library
+import * as MiesWeb from '@tanqory/mies-core-web';
+```
+
+## TypeScript
+
+All components are fully typed for better development experience:
+
+```tsx
+import type { ButtonProps } from '@tanqory/mies-core-web/button';
+import type { CardProps } from '@tanqory/mies-core-web/card';
+
+const MyButton: React.FC<ButtonProps> = ({ variant, size, children }) => {
+  return (
+    <Button variant={variant} size={size}>
+      {children}
+    </Button>
+  );
+};
+```
+
+## Next Steps
+
+- [Components Overview](/components/web) - Explore all available components
+- [Foundations](/foundations) - Learn about design foundations
+- [Icons](/icons/web) - Browse the icon library
+- [Design Tokens](/tokens/css) - Using CSS variables

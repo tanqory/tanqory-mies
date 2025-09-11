@@ -1,0 +1,36 @@
+{
+  "name": "eslint-plugin-tanqory-mies",
+  "version": "0.1.0",
+  "description": "ESLint plugin to enforce Tanqory Mies design system constraints",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist *.tsbuildinfo"
+  },
+  "keywords": [
+    "eslint",
+    "plugin",
+    "design-system",
+    "tanqory",
+    "mies"
+  ],
+  "author": "Tanqory",
+  "license": "MIT",
+  "peerDependencies": {
+    "eslint": ">=8.0.0"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8.56.0",
+    "@types/node": "^22.0.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

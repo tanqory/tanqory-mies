@@ -1,0 +1,110 @@
+@import '@tanqory/mies-tokens/tokens.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Code syntax highlighting */
+@import 'highlight.js/styles/github.css';
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--mies-color-white);
+  border: var(--mies-border-width) solid var(--mies-color-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--mies-color-brand);
+  border: none;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--mies-color-black);
+}
+
+/* Focus styles */
+:focus {
+  outline: 2px solid var(--mies-color-brand);
+  outline-offset: 2px;
+}
+
+/* MDX content styling */
+.prose {
+  @apply max-w-none;
+}
+
+.prose h1 {
+  @apply text-2xl font-sans text-black border-b border-1 border-black pb-16 mb-24;
+}
+
+.prose h2 {
+  @apply text-xl font-sans text-black border-b border-1 border-black pb-8 mb-16 mt-32;
+}
+
+.prose h3 {
+  @apply text-lg font-sans text-black mb-12 mt-24;
+}
+
+.prose p {
+  @apply text-base font-sans text-black mb-16;
+}
+
+.prose ul {
+  @apply mb-16;
+}
+
+.prose li {
+  @apply text-base font-sans text-black mb-8;
+}
+
+.prose code {
+  @apply bg-white border-1 border-black px-8 py-4 text-sm;
+  border-radius: 0 !important;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace !important;
+}
+
+.prose pre {
+  @apply bg-white border-1 border-black p-16 overflow-x-auto;
+  border-radius: 0 !important;
+}
+
+.prose pre code {
+  @apply bg-transparent border-0 p-0;
+  border-radius: 0 !important;
+}
+
+.prose blockquote {
+  @apply border-l border-brand pl-16 bg-white my-16;
+  border-left-width: 4px;
+  border-radius: 0 !important;
+}
+
+.prose table {
+  @apply w-full border-1 border-black border-collapse;
+}
+
+.prose th {
+  @apply bg-brand text-black p-12 border-1 border-black text-left font-sans font-medium;
+}
+
+.prose td {
+  @apply p-12 border-1 border-black font-sans text-black;
+}
+
+/* Navigation active state */
+.nav-active {
+  @apply bg-brand text-black;
+}
+
+/* Code block enhancements */
+.hljs {
+  background: var(--mies-color-white) !important;
+  color: var(--mies-color-black) !important;
+  border: var(--mies-border-width) solid var(--mies-color-black) !important;
+  padding: var(--mies-spacing-16) !important;
+  border-radius: 0 !important;
+}

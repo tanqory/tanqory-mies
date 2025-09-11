@@ -1,0 +1,41 @@
+:root {
+  /* Colors */
+  --mies-color-brand: #E1FF00;
+  --mies-color-black: #000000;
+  --mies-color-white: #FFFFFF;
+
+  /* Spacing */
+  --mies-spacing-4: 0.25rem;
+  --mies-spacing-8: 0.5rem;
+  --mies-spacing-12: 0.75rem;
+  --mies-spacing-16: 1rem;
+  --mies-spacing-24: 1.5rem;
+  --mies-spacing-32: 2rem;
+
+  /* Typography */
+  --mies-font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mies-font-size-xs: 0.75rem;
+  --mies-font-size-sm: 0.875rem;
+  --mies-font-size-base: 1rem;
+  --mies-font-size-lg: 1.125rem;
+  --mies-font-size-xl: 1.25rem;
+  --mies-font-size-2xl: 1.5rem;
+  --mies-line-height-xs: 1rem;
+  --mies-line-height-sm: 1.25rem;
+  --mies-line-height-base: 1.5rem;
+  --mies-line-height-lg: 1.75rem;
+  --mies-line-height-xl: 1.75rem;
+  --mies-line-height-2xl: 2rem;
+
+  /* Border */
+  --mies-border-width: 1px;
+  --mies-border-radius: 0;
+
+  /* Shadow */
+  --mies-shadow: none;
+
+  /* Z-Index */
+  --mies-z-index-base: 100;
+  --mies-z-index-nav: 200;
+  --mies-z-index-overlay: 300;
+}

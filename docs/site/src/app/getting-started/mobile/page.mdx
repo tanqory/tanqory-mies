@@ -1,0 +1,444 @@
+# Mobile Installation
+
+Set up the Tanqory Mies design system in your React Native application with StyleSheet and design tokens.
+
+## Installation
+
+Install the required packages:
+
+```bash
+npm install @tanqory/mies-core-native @tanqory/mies-tokens @tanqory/mies-icons react-native-svg
+# or
+pnpm add @tanqory/mies-core-native @tanqory/mies-tokens @tanqory/mies-icons react-native-svg
+```
+
+### Platform Setup
+
+For React Native projects, you'll need to configure `react-native-svg`:
+
+#### Expo Projects
+
+If using Expo SDK 50+, `react-native-svg` is included by default.
+
+#### Bare React Native
+
+```bash
+# Install react-native-svg
+npm install react-native-svg
+
+# iOS
+cd ios && pod install
+
+# For React Native 0.60+ with autolinking, this should be automatic
+```
+
+## Configuration
+
+### Metro Configuration
+
+For monorepo or workspace setups, configure Metro to resolve design system packages:
+
+```javascript
+// metro.config.js
+const { getDefaultConfig } = require('expo/metro-config');
+// or for bare RN: const { getDefaultConfig } = require('metro-config');
+
+const config = getDefaultConfig(__dirname);
+
+// Add design system packages to Metro's resolver
+config.resolver.platforms = ['ios', 'android', 'native'];
+
+module.exports = config;
+```
+
+## Usage Examples
+
+### Basic Components
+
+```tsx
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { Button } from '@tanqory/mies-core-native/button';
+import { Card, CardHeader, CardContent } from '@tanqory/mies-core-native/card';
+import { CartIcon } from '@tanqory/mies-icons/native';
+import tokens from '@tanqory/mies-tokens/tokens.json';
+
+export default function MyScreen() {
+  return (
+    <View style={styles.container}>
+      <Card padding="lg" bordered>
+        <CardHeader>
+          <Text style={styles.title}>Welcome</Text>
+        </CardHeader>
+        
+        <CardContent>
+          <Text style={styles.description}>
+            Get started with the Tanqory Mies design system.
+          </Text>
+          
+          <View style={styles.actions}>
+            <Button 
+              variant="primary"
+              onPress={() => console.log('Get Started pressed')}
+              style={styles.button}
+            >
+              Get Started
+            </Button>
+            <CartIcon size={24} color={tokens.colors.brand} />
+          </View>
+        </CardContent>
+      </Card>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: tokens.spacing[24],
+    backgroundColor: tokens.colors.white,
+  },
+  title: {
+    fontSize: tokens.typography.fontSize.lg,
+    fontFamily: tokens.typography.fontFamily,
+    color: tokens.colors.black,
+    fontWeight: '600',
+  },
+  description: {
+    fontSize: tokens.typography.fontSize.base,
+    fontFamily: tokens.typography.fontFamily,
+    color: tokens.colors.black,
+    marginBottom: tokens.spacing[16],
+  },
+  actions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: tokens.spacing[12],
+  },
+  button: {
+    flex: 1,
+  },
+});
+```
+
+### Layout Components
+
+```tsx
+import React from 'react';
+import { Text } from 'react-native';
+import { 
+  Screen, 
+  Header, 
+  Container, 
+  Section, 
+  Stack 
+} from '@tanqory/mies-core-native/layout';
+import { Button } from '@tanqory/mies-core-native/button';
+
+export default function MyScreen() {
+  return (
+    <Screen safe scrollable>
+      <Header bordered>
+        <Text style={{ fontSize: 18, fontWeight: '600' }}>My App</Text>
+        <Button variant="outline" size="sm">
+          Settings
+        </Button>
+      </Header>
+      
+      <Container padding="base">
+        <Section spacing="lg">
+          <Stack direction="column" spacing="base">
+            <Text>Screen content goes here</Text>
+          </Stack>
+        </Section>
+      </Container>
+    </Screen>
+  );
+}
+```
+
+### Form Components
+
+```tsx
+import React, { useState } from 'react';
+import { Alert } from 'react-native';
+import { Screen, Container, Section } from '@tanqory/mies-core-native/layout';
+import { 
+  Form, 
+  FormField, 
+  Label, 
+  Input, 
+  Textarea,
+  FormActions 
+} from '@tanqory/mies-core-native/form';
+import { Button } from '@tanqory/mies-core-native/button';
+
+export default function ContactScreen() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = () => {
+    console.log('Form submitted:', { name, email, message });
+    Alert.alert('Success', 'Form submitted successfully!');
+  };
+
+  return (
+    <Screen safe scrollable>
+      <Container padding="base">
+        <Section>
+          <Form spacing="base">
+            <FormField>
+              <Label required>Name</Label>
+              <Input
+                value={name}
+                onChangeText={setName}
+                placeholder="Enter your name"
+              />
+            </FormField>
+            
+            <FormField>
+              <Label required>Email</Label>
+              <Input
+                value={email}
+                onChangeText={setEmail}
+                placeholder="Enter your email"
+                keyboardType="email-address"
+                autoCapitalize="none"
+              />
+            </FormField>
+            
+            <FormField>
+              <Label>Message</Label>
+              <Textarea
+                value={message}
+                onChangeText={setMessage}
+                placeholder="Enter your message"
+                rows={4}
+              />
+            </FormField>
+            
+            <FormActions>
+              <Button 
+                variant="primary"
+                onPress={handleSubmit}
+                style={{ flex: 1 }}
+              >
+                Submit
+              </Button>
+            </FormActions>
+          </Form>
+        </Section>
+      </Container>
+    </Screen>
+  );
+}
+```
+
+### List Components
+
+```tsx
+import React from 'react';
+import { Alert } from 'react-native';
+import { Screen, Container } from '@tanqory/mies-core-native/layout';
+import { 
+  List, 
+  ListItem, 
+  ListItemText, 
+  ListItemAction,
+  ListSection 
+} from '@tanqory/mies-core-native/list';
+import { Button } from '@tanqory/mies-core-native/button';
+import { BoxIcon } from '@tanqory/mies-icons/native';
+import tokens from '@tanqory/mies-tokens/tokens.json';
+
+const products = [
+  { id: 1, name: 'Wireless Headphones', price: '$299.99' },
+  { id: 2, name: 'Mechanical Keyboard', price: '$149.99' },
+  { id: 3, name: 'Ergonomic Mouse', price: '$79.99' },
+];
+
+export default function ProductsScreen() {
+  const handleProductPress = (product) => {
+    Alert.alert(product.name, `Price: ${product.price}`);
+  };
+
+  return (
+    <Screen safe>
+      <Container>
+        <ListSection title="Products">
+          <List
+            data={products}
+            renderItem={({ item }) => (
+              <ListItem
+                key={item.id}
+                divider
+                onPress={() => handleProductPress(item)}
+              >
+                <BoxIcon size={20} color={tokens.colors.brand} />
+                <ListItemText 
+                  primary={item.name}
+                  secondary={item.price}
+                />
+                <ListItemAction>
+                  <Button variant="outline" size="sm">
+                    View
+                  </Button>
+                </ListItemAction>
+              </ListItem>
+            )}
+          />
+        </ListSection>
+      </Container>
+    </Screen>
+  );
+}
+```
+
+## Design Tokens Integration
+
+All styling should use design tokens for consistency:
+
+```tsx
+import tokens from '@tanqory/mies-tokens/tokens.json';
+import { StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: tokens.colors.white,
+    padding: tokens.spacing[16],
+    borderWidth: tokens.border.width,
+    borderColor: tokens.colors.black,
+    // Note: no borderRadius - design constraint
+  },
+  text: {
+    fontFamily: tokens.typography.fontFamily,
+    fontSize: tokens.typography.fontSize.base,
+    lineHeight: tokens.typography.lineHeight.base,
+    color: tokens.colors.black,
+  },
+  button: {
+    paddingHorizontal: tokens.spacing[16],
+    paddingVertical: tokens.spacing[8],
+    backgroundColor: tokens.colors.brand,
+  },
+});
+```
+
+## Design Constraints
+
+Follow these constraints when styling components:
+
+### No Visual Effects
+```tsx
+// ❌ Avoid shadows
+shadowOffset: { width: 0, height: 2 },
+shadowOpacity: 0.1,
+elevation: 2,
+
+// ✅ Use flat design
+shadowOffset: { width: 0, height: 0 },
+shadowOpacity: 0,
+elevation: 0,
+```
+
+### No Border Radius
+```tsx
+// ❌ Avoid rounded corners
+borderRadius: 8,
+
+// ✅ Use sharp edges
+borderRadius: 0,
+```
+
+### Limited Color Palette
+```tsx
+// ✅ Use design system colors
+backgroundColor: tokens.colors.brand,  // #E1FF00
+color: tokens.colors.black,           // #000000
+borderColor: tokens.colors.white,     // #FFFFFF
+
+// ❌ Avoid custom colors
+backgroundColor: '#FF6B6B',
+color: '#4ECDC4',
+```
+
+## Navigation Setup
+
+For React Navigation integration:
+
+```tsx
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { CartIcon, BoxIcon, UserIcon } from '@tanqory/mies-icons/native';
+import tokens from '@tanqory/mies-tokens/tokens.json';
+
+const Tab = createBottomTabNavigator();
+
+export default function AppNavigator() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: tokens.colors.white,
+          borderBottomWidth: tokens.border.width,
+          borderBottomColor: tokens.colors.black,
+          shadowOffset: { height: 0, width: 0 },
+          shadowOpacity: 0,
+          elevation: 0,
+        },
+        tabBarStyle: {
+          backgroundColor: tokens.colors.white,
+          borderTopWidth: tokens.border.width,
+          borderTopColor: tokens.colors.black,
+          shadowOffset: { height: 0, width: 0 },
+          shadowOpacity: 0,
+          elevation: 0,
+        },
+        tabBarActiveTintColor: tokens.colors.brand,
+        tabBarInactiveTintColor: tokens.colors.black,
+      }}
+    >
+      <Tab.Screen 
+        name="Home" 
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <CartIcon size={size} color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+```
+
+## Performance
+
+- **StyleSheet.create()** - Always use StyleSheet for performance
+- **Design tokens** - No runtime processing needed
+- **Tree-shaking** - Import only components you need
+- **Native performance** - Built on React Native's optimized components
+
+## TypeScript Support
+
+All components include TypeScript definitions:
+
+```tsx
+import type { ButtonProps } from '@tanqory/mies-core-native/button';
+import type { CardProps } from '@tanqory/mies-core-native/card';
+
+const MyButton: React.FC<ButtonProps> = ({ variant, size, children }) => {
+  return (
+    <Button variant={variant} size={size}>
+      {children}
+    </Button>
+  );
+};
+```
+
+## Next Steps
+
+- [Components Overview](/components/mobile) - Explore all mobile components
+- [Icons](/icons/mobile) - Browse the icon library for React Native
+- [Design Tokens](/tokens/json) - Using JSON tokens in React Native
+- [Foundations](/foundations) - Learn about design foundations
