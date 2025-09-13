@@ -1,4 +1,4 @@
-# Surface & Layering
+# Layout
 
 Tanqory Mies creates depth and hierarchy through subtle elevation, strategic layering, and thoughtful surface treatments.
 

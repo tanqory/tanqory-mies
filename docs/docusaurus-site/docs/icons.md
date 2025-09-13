@@ -15,14 +15,14 @@ All icons are designed with these specifications:
 
 | Icon | Name | Description |
 |------|------|-------------|
-| 🛒 | `CartIcon` | Shopping cart for e-commerce |
-| 📦 | `BoxIcon` | Product package or inventory |
-| 🚚 | `TruckIcon` | Shipping and delivery |
-| 💳 | `CreditCardIcon` | Payment and checkout |
-| 📊 | `ChartIcon` | Analytics and reporting |
-| 👤 | `UserIcon` | User profile and account |
-| 🏷️ | `TagIcon` | Price tags and categories |
-| 🔍 | `SearchIcon` | Search functionality |
+| | `CartIcon` | Shopping cart for e-commerce |
+| | `BoxIcon` | Product package or inventory |
+| | `TruckIcon` | Shipping and delivery |
+| | `CreditCardIcon` | Payment and checkout |
+| | `ChartIcon` | Analytics and reporting |
+| | `UserIcon` | User profile and account |
+| | `TagIcon` | Price tags and categories |
+| | `SearchIcon` | Search functionality |
 
 ## Installation
 

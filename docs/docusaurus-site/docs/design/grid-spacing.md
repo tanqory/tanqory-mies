@@ -1,4 +1,4 @@
-# Grid & Spacing
+# Spacing
 
 Tanqory Mies uses systematic grids and consistent spacing to create harmonious, predictable layouts across all screen sizes.
 

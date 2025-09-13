@@ -1,142 +1,46 @@
 # Tanqory Experience Values
 
-The Tanqory Mies design system is built upon core experience values that guide every design and development decision.
+Tanqory exists to make **global commerce simple, powerful, and human**.  
+Our experience values guide every decision—from core product design to micro-interactions—so merchants and partners enjoy a consistent, world-class journey across all Tanqory surfaces.
 
-## Our Philosophy
+## 1. Clarity First
+- **Less is more.** Remove noise and keep what matters.  
+- Every screen should answer: *What can I do next?*  
+- Plain language beats jargon in every locale.
 
-Inspired by Ludwig Mies van der Rohe's architectural principle of "less is more," Tanqory Mies embodies minimalist excellence in digital experiences.
+## 2. Seamless Everywhere
+- One platform across **web, mobile, POS, and future channels**.  
+- Shared design tokens ensure the same look and feel on any device.  
+- Merchants can start a task on one device and finish on another without friction.
 
-## Core Values
+## 3. Built-In Accessibility
+- WCAG 2.1 AA compliance as the baseline, not the goal.  
+- Components ship with semantic HTML and ARIA support.  
+- Keyboard, screen reader, and high-contrast modes work by default.
 
-### 1. Simplicity
-**"Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away."**
+## 4. Global by Design
+- Internationalization (i18n) and localization (l10n) are mandatory, not afterthoughts.  
+- Currency, date, and number formats adapt automatically to each locale.  
+- Flexible layouts allow text expansion and right-to-left scripts.
 
-- **Clear Purpose**: Every element serves a specific function
-- **Minimal Cognitive Load**: Reduce mental effort required to use interfaces
-- **Essential Elements**: Include only what's necessary for the task
-- **Clean Visual Design**: Embrace white space and clear typography
+## 5. Merchant Empowerment
+- Tools and flows must **save time and reduce cognitive load**.  
+- Surface insights and automation that let merchants focus on growth, not setup.  
+- Provide clear guidance, undo paths, and instant feedback.
 
-### 2. Consistency
-**Creating predictable experiences across all touchpoints.**
+## 6. Performance & Reliability
+- Fast by default: lean code, optimized images, and prefetching.  
+- Zero-downtime deployment and rigorous testing for every release.  
+- Mobile networks and low-end devices are first-class citizens.
 
-- **Design Patterns**: Reusable solutions for common problems
-- **Interaction Models**: Consistent behavior across components
-- **Visual Language**: Unified color, typography, and spacing systems
-- **Cross-Platform Harmony**: Seamless experience between web and mobile
+## 7. Open Collaboration
+- Encourage contributions from designers, developers, and partners.  
+- Document patterns, decisions, and rationale in the open.  
+- Every improvement to Tanqory Mies benefits the entire ecosystem.
 
-### 3. Quality
-**Excellence in every detail, from pixel-perfect designs to performant code.**
+### How to Use These Values
+- **Design reviews:** Check each screen against these seven points.  
+- **Product planning:** Use them as a scorecard when prioritizing features.  
+- **Code reviews:** Ensure components respect accessibility, performance, and global-readiness.
 
-- **Craftsmanship**: Attention to detail in every component
-- **Performance**: Fast, responsive experiences
-- **Accessibility**: Inclusive design for all users
-- **Reliability**: Robust components that work consistently
-
-### 4. Clarity
-**Clear communication through intuitive design.**
-
-- **Information Hierarchy**: Logical organization of content
-- **Visual Communication**: Icons, colors, and typography that convey meaning
-- **User Guidance**: Clear paths to task completion
-- **Feedback Systems**: Immediate response to user actions
-
-### 5. Efficiency
-**Streamlined experiences that respect users' time.**
-
-- **Task Optimization**: Minimize steps to complete goals
-- **Smart Defaults**: Sensible preset configurations
-- **Progressive Disclosure**: Show information when needed
-- **Keyboard Navigation**: Efficient interaction patterns
-
-## Implementation Guidelines
-
-### Design Decisions
-When making design decisions, ask:
-1. **Does this serve the user's primary goal?**
-2. **Can we solve this with existing patterns?**
-3. **Does this maintain visual hierarchy?**
-4. **Is this accessible to all users?**
-5. **Will this scale across different contexts?**
-
-### Component Development
-Every component should:
-- **Have a single, clear purpose**
-- **Work consistently across platforms**
-- **Meet accessibility standards**
-- **Provide clear documentation**
-- **Include comprehensive testing**
-
-### User Experience Priorities
-1. **Task Completion**: Users can accomplish their goals efficiently
-2. **Error Prevention**: Anticipate and prevent user mistakes
-3. **Recovery**: Provide clear paths to resolve issues
-4. **Learning**: Interfaces teach users how to use them
-5. **Delight**: Thoughtful details that enhance the experience
-
-## Experience Principles
-
-### Progressive Enhancement
-Start with core functionality and enhance:
-- **Base Experience**: Works for everyone, everywhere
-- **Enhanced Experience**: Richer interactions for capable devices
-- **Premium Experience**: Advanced features for optimal conditions
-
-### Responsive Design
-Adapt experiences to context:
-- **Device Capabilities**: Optimize for screen size and input method
-- **Network Conditions**: Graceful degradation for slow connections
-- **User Preferences**: Respect accessibility and preference settings
-- **Environmental Context**: Consider when and where users interact
-
-### Performance as a Feature
-Speed is a fundamental aspect of user experience:
-- **Perceived Performance**: Make interfaces feel fast
-- **Loading Strategies**: Progressive loading and smart caching
-- **Interaction Responsiveness**: Immediate feedback to user actions
-- **Resource Efficiency**: Minimal impact on device resources
-
-## Cultural Considerations
-
-### Global Mindset
-Design for diverse audiences:
-- **Cultural Sensitivity**: Respect different cultural contexts
-- **Language Support**: Accommodate various languages and writing systems
-- **Local Conventions**: Adapt to regional interaction patterns
-- **Inclusive Imagery**: Represent diverse users and contexts
-
-### Accessibility First
-Design for all abilities:
-- **Universal Design**: Solutions that work for everyone
-- **Assistive Technology**: Compatible with screen readers and other tools
-- **Cognitive Accessibility**: Clear language and simple interactions
-- **Motor Accessibility**: Appropriate touch targets and keyboard navigation
-
-## Continuous Improvement
-
-### User-Centered Iteration
-- **User Research**: Regular feedback from real users
-- **Usage Analytics**: Data-driven design decisions
-- **Accessibility Testing**: Ongoing evaluation with diverse users
-- **Performance Monitoring**: Continuous optimization
-
-### Design System Evolution
-- **Component Versioning**: Careful evolution of existing components
-- **Documentation Updates**: Keep guidance current and comprehensive
-- **Community Feedback**: Learn from implementation experiences
-- **Technology Adaptation**: Evolve with platform capabilities
-
-## Success Metrics
-
-We measure success through:
-- **Task Completion Rates**: Can users accomplish their goals?
-- **Error Rates**: How often do users encounter problems?
-- **Accessibility Compliance**: Do we meet standards across all components?
-- **Performance Metrics**: Are experiences fast and responsive?
-- **User Satisfaction**: Do users enjoy using our interfaces?
-- **Developer Experience**: Can teams build efficiently with our system?
-
-## Living Values
-
-These values are not static—they evolve with our understanding of user needs, technological capabilities, and design best practices. Every team member is responsible for upholding and refining these values through their daily work.
-
-The goal is not just to create beautiful interfaces, but to craft experiences that genuinely improve people's lives through thoughtful, purposeful design.
+By living these values, every Tanqory product delivers an experience that is **clear, inclusive, and ready for global commerce**.

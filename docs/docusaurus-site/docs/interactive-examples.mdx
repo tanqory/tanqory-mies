@@ -1,0 +1,1069 @@
+---
+title: Interactive Examples
+---
+
+import React from 'react';
+
+export const CodeSandboxButton = ({ title, code }) => {
+  const createSandbox = () => {
+    const files = {
+      'package.json': {
+        content: {
+          dependencies: {
+            react: 'latest',
+            'react-dom': 'latest',
+            'react-scripts': 'latest'
+          },
+          main: 'src/index.js',
+          scripts: {
+            start: 'react-scripts start',
+            build: 'react-scripts build'
+          }
+        }
+      },
+      'public/index.html': {
+        content: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>${title || 'Tanqory Mies Component'}</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>`
+      },
+      'src/index.js': {
+        content: `import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);`
+      },
+      'src/App.js': {
+        content: `import React, { useState } from 'react';
+
+${code}
+
+export default function App() {
+  return (
+    <div style={{ padding: '20px' }}>
+      <h1>${title || 'Tanqory Mies Component'}</h1>
+      <${code.match(/function (\w+)/)?.[1] || 'Component'} />
+    </div>
+  );
+}`
+      }
+    };
+
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
+    form.target = '_blank';
+
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'parameters';
+    input.value = btoa(unescape(encodeURIComponent(JSON.stringify({ files }))));
+
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+  };
+
+  return (
+    <button
+      onClick={createSandbox}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        padding: '10px 16px',
+        background: '#151515',
+        color: 'white',
+        border: '1px solid #333',
+        borderRadius: '6px',
+        cursor: 'pointer',
+        fontSize: '14px',
+        fontWeight: '500',
+        margin: '16px 0',
+        transition: 'background 0.2s'
+      }}
+      onMouseOver={(e) => e.target.style.background = '#252525'}
+      onMouseOut={(e) => e.target.style.background = '#151515'}
+    >
+      <svg width="16" height="16" viewBox="0 0 256 296" fill="currentColor">
+        <path d="M115.498 261.088L96.284 251.28V157.28L115.498 147.472V261.088Z" />
+        <path d="M128 147.312L108.732 157.312L128 167.312L147.268 157.312L128 147.312Z" />
+        <path d="M140.502 261.088V147.472L159.716 157.28V251.28L140.502 261.088Z" />
+        <path d="M123.364 138.288L104.096 128.288L123.364 118.288L142.632 128.288L123.364 138.288Z" />
+      </svg>
+      Edit in CodeSandbox
+    </button>
+  );
+};
+
+export const CodePreviewWithSandbox = ({ title, code, children }) => {
+  const createSandbox = () => {
+    const files = {
+      'package.json': {
+        content: {
+          dependencies: {
+            react: 'latest',
+            'react-dom': 'latest',
+            'react-scripts': 'latest'
+          },
+          main: 'src/index.js',
+          scripts: {
+            start: 'react-scripts start',
+            build: 'react-scripts build'
+          }
+        }
+      },
+      'public/index.html': {
+        content: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>${title || 'Tanqory Mies Component'}</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>`
+      },
+      'src/index.js': {
+        content: `import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);`
+      },
+      'src/App.js': {
+        content: `import React, { useState } from 'react';
+
+${code}
+
+export default function App() {
+  return (
+    <div style={{ padding: '20px' }}>
+      <h1>${title || 'Tanqory Mies Component'}</h1>
+      <${code.match(/function (\w+)/)?.[1] || 'Component'} />
+    </div>
+  );
+}`
+      }
+    };
+
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
+    form.target = '_blank';
+
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'parameters';
+    input.value = btoa(unescape(encodeURIComponent(JSON.stringify({ files }))));
+
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+  };
+
+  return (
+    <div className="code-preview-container code-preview-container-with-button">
+      <div className="code-preview-header">
+        <span>Code Preview</span>
+        <span
+          onClick={createSandbox}
+          className="codesandbox-text-link"
+        >
+          Edit in CodeSandbox
+        </span>
+      </div>
+      <div className="code-preview-result">
+        {children}
+      </div>
+    </div>
+  );
+};
+
+# Interactive Examples
+
+ตัวอย่าง component แบบ interactive ที่สามารถแก้ไขและดูผลแบบ real-time
+
+## Simple Test
+
+<CodePreviewWithSandbox
+  title="Simple Test Component"
+  code={`function SimpleTest() {
+  return (
+    <div style={{ 
+      padding: '20px', 
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', 
+      color: 'white',
+      borderRadius: '8px',
+      textAlign: 'center',
+      fontSize: '18px',
+      fontWeight: '500'
+    }}>
+      Hello World! This is a component preview.
+      <br />
+      <small style={{ opacity: 0.9 }}>Result displays above the code!</small>
+    </div>
+  );
+}`}
+>
+  <div style={{ 
+    padding: '20px', 
+    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', 
+    color: 'white',
+    borderRadius: '8px',
+    textAlign: 'center',
+    fontSize: '18px',
+    fontWeight: '500'
+  }}>
+    Hello World! This is a component preview.
+    <br />
+    <small style={{ opacity: 0.9 }}>Result displays above the code!</small>
+  </div>
+</CodePreviewWithSandbox>
+
+```jsx title="Simple Test Component"
+function SimpleTest() {
+  return (
+    <div style={{ 
+      padding: '20px', 
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', 
+      color: 'white',
+      borderRadius: '8px',
+      textAlign: 'center',
+      fontSize: '18px',
+      fontWeight: '500'
+    }}>
+      Hello World! This is a component preview.
+      <br />
+      <small style={{ opacity: 0.9 }}>Result displays above the code!</small>
+    </div>
+  );
+}
+```
+
+## Button Component
+
+<div className="code-preview-container">
+  <div className="code-preview-result">
+    <div style={{ padding: '20px', textAlign: 'center' }}>
+      <button 
+        style={{
+          background: '#007bff',
+          color: 'white',
+          border: 'none',
+          padding: '10px 20px',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          fontSize: '16px'
+        }}
+      >
+        Click Me Button
+      </button>
+    </div>
+  </div>
+</div>
+
+```jsx title="Button Component"
+function ButtonExample() {
+  const [count, setCount] = useState(0);
+  
+  return (
+    <div style={{ padding: '20px', textAlign: 'center' }}>
+      <button 
+        onClick={() => setCount(count + 1)}
+        style={{
+          background: '#007bff',
+          color: 'white',
+          border: 'none',
+          padding: '10px 20px',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          fontSize: '16px'
+        }}
+      >
+        Clicked {count} times
+      </button>
+    </div>
+  );
+}
+```
+
+<CodeSandboxButton 
+  title="Button Component"
+  code={`function ButtonExample() {
+  const [count, setCount] = useState(0);
+  
+  return (
+    <div style={{ padding: '20px', textAlign: 'center' }}>
+      <button 
+        onClick={() => setCount(count + 1)}
+        style={{
+          background: '#007bff',
+          color: 'white',
+          border: 'none',
+          padding: '10px 20px',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          fontSize: '16px'
+        }}
+      >
+        Clicked {count} times
+      </button>
+    </div>
+  );
+}`}
+/>
+
+## Accordion Component
+
+<div className="code-preview-container">
+  <div className="code-preview-result">
+    <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+      <div style={{ 
+        border: '1px solid #ddd', 
+        marginBottom: '8px',
+        borderRadius: '4px'
+      }}>
+        <div style={{
+          padding: '16px',
+          background: '#f8f9fa',
+          cursor: 'pointer',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
+          <span>First Accordion</span>
+          <span>▼</span>
+        </div>
+        <div style={{ padding: '16px', background: 'white' }}>
+          First Content
+        </div>
+      </div>
+      <div style={{ 
+        border: '1px solid #ddd', 
+        marginBottom: '8px',
+        borderRadius: '4px'
+      }}>
+        <div style={{
+          padding: '16px',
+          background: '#f8f9fa',
+          cursor: 'pointer',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
+          <span>Second Accordion</span>
+          <span>▶</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+```jsx title="Accordion Component"
+function AccordionExample() {
+  const [openItems, setOpenItems] = useState({});
+  
+  const toggleItem = (itemKey) => {
+    setOpenItems(prev => ({
+      ...prev,
+      [itemKey]: !prev[itemKey]
+    }));
+  };
+  
+  const accordionData = [
+    { key: 'first', title: 'First Accordion', content: 'First Content' },
+    { key: 'second', title: 'Second Accordion', content: 'Second Content' },
+    { key: 'third', title: 'Third Accordion', content: 'Third Content' }
+  ];
+  
+  return (
+    <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+      {accordionData.map(item => (
+        <div key={item.key} style={{ 
+          border: '1px solid #ddd', 
+          marginBottom: '8px',
+          borderRadius: '4px'
+        }}>
+          <div 
+            onClick={() => toggleItem(item.key)}
+            style={{
+              padding: '16px',
+              background: '#f8f9fa',
+              cursor: 'pointer',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center'
+            }}
+          >
+            <span>{item.title}</span>
+            <span>{openItems[item.key] ? '▼' : '▶'}</span>
+          </div>
+          {openItems[item.key] && (
+            <div style={{ padding: '16px', background: 'white' }}>
+              {item.content}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+```
+
+<CodeSandboxButton 
+  title="Accordion Component"
+  code={`function AccordionExample() {
+  const [openItems, setOpenItems] = useState({});
+  
+  const toggleItem = (itemKey) => {
+    setOpenItems(prev => ({
+      ...prev,
+      [itemKey]: !prev[itemKey]
+    }));
+  };
+  
+  const accordionData = [
+    { key: 'first', title: 'First Accordion', content: 'First Content' },
+    { key: 'second', title: 'Second Accordion', content: 'Second Content' },
+    { key: 'third', title: 'Third Accordion', content: 'Third Content' }
+  ];
+  
+  return (
+    <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+      {accordionData.map(item => (
+        <div key={item.key} style={{ 
+          border: '1px solid #ddd', 
+          marginBottom: '8px',
+          borderRadius: '4px'
+        }}>
+          <div 
+            onClick={() => toggleItem(item.key)}
+            style={{
+              padding: '16px',
+              background: '#f8f9fa',
+              cursor: 'pointer',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center'
+            }}
+          >
+            <span>{item.title}</span>
+            <span>{openItems[item.key] ? '▼' : '▶'}</span>
+          </div>
+          {openItems[item.key] && (
+            <div style={{ padding: '16px', background: 'white' }}>
+              {item.content}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}`}
+/>
+
+## Card Component
+
+<div className="code-preview-container">
+  <div className="code-preview-result">
+    <div style={{ 
+      maxWidth: '400px', 
+      margin: '0 auto',
+      border: '1px solid #ddd',
+      borderRadius: '8px',
+      overflow: 'hidden',
+      boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+    }}>
+      <div style={{
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        color: 'white',
+        padding: '20px',
+        textAlign: 'center'
+      }}>
+        <h3 style={{ margin: '0 0 10px 0' }}>Tanqory Mies</h3>
+        <p style={{ margin: 0, opacity: 0.9 }}>Design System Card</p>
+      </div>
+      <div style={{ padding: '20px' }}>
+        <p>This is an example of a card component with gradient header and content area.</p>
+        <button style={{
+          background: '#007bff',
+          color: 'white',
+          border: 'none',
+          padding: '8px 16px',
+          borderRadius: '4px',
+          cursor: 'pointer'
+        }}>
+          Action Button
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+```jsx title="Card Component"
+function CardExample() {
+  return (
+    <div style={{ 
+      maxWidth: '400px', 
+      margin: '0 auto',
+      border: '1px solid #ddd',
+      borderRadius: '8px',
+      overflow: 'hidden',
+      boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+    }}>
+      <div style={{
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        color: 'white',
+        padding: '20px',
+        textAlign: 'center'
+      }}>
+        <h3 style={{ margin: '0 0 10px 0' }}>Tanqory Mies</h3>
+        <p style={{ margin: 0, opacity: 0.9 }}>Design System Card</p>
+      </div>
+      <div style={{ padding: '20px' }}>
+        <p>This is an example of a card component with gradient header and content area.</p>
+        <button style={{
+          background: '#007bff',
+          color: 'white',
+          border: 'none',
+          padding: '8px 16px',
+          borderRadius: '4px',
+          cursor: 'pointer'
+        }}>
+          Action Button
+        </button>
+      </div>
+    </div>
+  );
+}
+```
+
+<CodeSandboxButton 
+  title="Card Component"
+  code={`function CardExample() {
+  return (
+    <div style={{ 
+      maxWidth: '400px', 
+      margin: '0 auto',
+      border: '1px solid #ddd',
+      borderRadius: '8px',
+      overflow: 'hidden',
+      boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+    }}>
+      <div style={{
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        color: 'white',
+        padding: '20px',
+        textAlign: 'center'
+      }}>
+        <h3 style={{ margin: '0 0 10px 0' }}>Tanqory Mies</h3>
+        <p style={{ margin: 0, opacity: 0.9 }}>Design System Card</p>
+      </div>
+      <div style={{ padding: '20px' }}>
+        <p>This is an example of a card component with gradient header and content area.</p>
+        <button style={{
+          background: '#007bff',
+          color: 'white',
+          border: 'none',
+          padding: '8px 16px',
+          borderRadius: '4px',
+          cursor: 'pointer'
+        }}>
+          Action Button
+        </button>
+      </div>
+    </div>
+  );
+}`}
+/>
+
+## Form Component
+
+<div className="code-preview-container">
+  <div className="code-preview-result">
+    <form style={{ 
+      maxWidth: '400px', 
+      margin: '0 auto',
+      padding: '20px',
+      border: '1px solid #ddd',
+      borderRadius: '8px'
+    }}>
+      <div style={{ marginBottom: '16px' }}>
+        <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold' }}>
+          Name:
+        </label>
+        <input 
+          type="text"
+          placeholder="Enter your name"
+          style={{
+            width: '100%',
+            padding: '8px',
+            border: '1px solid #ddd',
+            borderRadius: '4px',
+            boxSizing: 'border-box'
+          }}
+        />
+      </div>
+      
+      <div style={{ marginBottom: '16px' }}>
+        <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold' }}>
+          Email:
+        </label>
+        <input 
+          type="email"
+          placeholder="Enter your email"
+          style={{
+            width: '100%',
+            padding: '8px',
+            border: '1px solid #ddd',
+            borderRadius: '4px',
+            boxSizing: 'border-box'
+          }}
+        />
+      </div>
+      
+      <button type="submit" style={{
+        background: '#28a745',
+        color: 'white',
+        border: 'none',
+        padding: '10px 20px',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        width: '100%'
+      }}>
+        Submit Form
+      </button>
+    </form>
+  </div>
+</div>
+
+```jsx title="Form Component"
+function FormExample() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`Form submitted!\\nName: ${formData.name}\\nEmail: ${formData.email}`);
+  };
+  
+  return (
+    <form onSubmit={handleSubmit} style={{ 
+      maxWidth: '400px', 
+      margin: '0 auto',
+      padding: '20px',
+      border: '1px solid #ddd',
+      borderRadius: '8px'
+    }}>
+      <div style={{ marginBottom: '16px' }}>
+        <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold' }}>
+          Name:
+        </label>
+        <input 
+          type="text"
+          value={formData.name}
+          onChange={(e) => setFormData({...formData, name: e.target.value})}
+          style={{
+            width: '100%',
+            padding: '8px',
+            border: '1px solid #ddd',
+            borderRadius: '4px',
+            boxSizing: 'border-box'
+          }}
+        />
+      </div>
+      
+      <div style={{ marginBottom: '16px' }}>
+        <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold' }}>
+          Email:
+        </label>
+        <input 
+          type="email"
+          value={formData.email}
+          onChange={(e) => setFormData({...formData, email: e.target.value})}
+          style={{
+            width: '100%',
+            padding: '8px',
+            border: '1px solid #ddd',
+            borderRadius: '4px',
+            boxSizing: 'border-box'
+          }}
+        />
+      </div>
+      
+      <button type="submit" style={{
+        background: '#28a745',
+        color: 'white',
+        border: 'none',
+        padding: '10px 20px',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        width: '100%'
+      }}>
+        Submit Form
+      </button>
+    </form>
+  );
+}
+```
+
+<CodeSandboxButton 
+  title="Form Component"
+  code={`function FormExample() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(\`Form submitted!\\nName: \${formData.name}\\nEmail: \${formData.email}\`);
+  };
+  
+  return (
+    <form onSubmit={handleSubmit} style={{ 
+      maxWidth: '400px', 
+      margin: '0 auto',
+      padding: '20px',
+      border: '1px solid #ddd',
+      borderRadius: '8px'
+    }}>
+      <div style={{ marginBottom: '16px' }}>
+        <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold' }}>
+          Name:
+        </label>
+        <input 
+          type="text"
+          value={formData.name}
+          onChange={(e) => setFormData({...formData, name: e.target.value})}
+          style={{
+            width: '100%',
+            padding: '8px',
+            border: '1px solid #ddd',
+            borderRadius: '4px',
+            boxSizing: 'border-box'
+          }}
+        />
+      </div>
+      
+      <div style={{ marginBottom: '16px' }}>
+        <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold' }}>
+          Email:
+        </label>
+        <input 
+          type="email"
+          value={formData.email}
+          onChange={(e) => setFormData({...formData, email: e.target.value})}
+          style={{
+            width: '100%',
+            padding: '8px',
+            border: '1px solid #ddd',
+            borderRadius: '4px',
+            boxSizing: 'border-box'
+          }}
+        />
+      </div>
+      
+      <button type="submit" style={{
+        background: '#28a745',
+        color: 'white',
+        border: 'none',
+        padding: '10px 20px',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        width: '100%'
+      }}>
+        Submit Form
+      </button>
+    </form>
+  );
+}`}
+/>
+
+## Stack Layout Component
+
+<div className="code-preview-container">
+  <div className="code-preview-result">
+    <div style={{ padding: '20px' }}>
+      {/* Control Panel */}
+      <div style={{ 
+        marginBottom: '20px', 
+        display: 'flex', 
+        gap: '10px', 
+        flexWrap: 'wrap',
+        padding: '16px',
+        background: '#f8f9fa',
+        borderRadius: '8px'
+      }}>
+        <button style={{
+          padding: '6px 12px',
+          background: '#007bff',
+          color: 'white',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer',
+          fontSize: '12px'
+        }}>
+          Non-wrapping
+        </button>
+        <button style={{
+          padding: '6px 12px',
+          background: '#e9ecef',
+          color: '#333',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer',
+          fontSize: '12px'
+        }}>
+          Wrapping
+        </button>
+        
+        <span style={{ margin: '0 8px', alignSelf: 'center', fontSize: '12px', color: '#666' }}>Gap:</span>
+        <button style={{
+          padding: '6px 12px',
+          background: '#007bff',
+          color: 'white',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer',
+          fontSize: '12px'
+        }}>
+          16px
+        </button>
+      </div>
+
+      {/* Stack Layout Demo */}
+      <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'nowrap',
+        gap: '16px',
+        alignItems: 'start',
+        padding: '20px',
+        background: '#fff',
+        border: '1px solid #ddd',
+        borderRadius: '8px',
+        minHeight: '120px'
+      }}>
+        <div style={{ background: '#20599C', width: '100px', height: '60px', borderRadius: '4px' }}></div>
+        <div style={{ background: '#20599C', width: '60px', height: '60px', borderRadius: '4px' }}></div>
+        <div style={{ background: '#20599C', width: '80px', height: '60px', borderRadius: '4px' }}></div>
+        <div style={{ background: '#20599C', width: '120px', height: '60px', borderRadius: '4px' }}></div>
+        <div style={{ background: '#20599C', width: '90px', height: '60px', borderRadius: '4px' }}></div>
+      </div>
+
+      <p style={{ marginTop: '16px', fontSize: '14px', color: '#666' }}>
+        Use to display children horizontally in a row. Based on CSS Flexbox.
+      </p>
+      <p style={{ fontSize: '12px', color: '#999' }}>
+        The default wrapping behavior of children can be overridden using the <code>wrap</code> prop.
+      </p>
+    </div>
+  </div>
+</div>
+
+```jsx title="Stack Layout Component"
+function StackLayoutExample() {
+  const [wrap, setWrap] = useState('Non-wrapping');
+  const [gap, setGap] = useState('16px');
+  const [align, setAlign] = useState('start');
+  const [direction, setDirection] = useState('horizontal');
+
+  const wrapOptions = ['Non-wrapping', 'Wrapping'];
+  const gapOptions = ['0px', '8px', '16px', '24px'];
+  const alignOptions = ['start', 'center', 'end', 'stretch'];
+  const directionOptions = ['horizontal', 'vertical'];
+
+  return (
+    <div style={{ padding: '20px' }}>
+      {/* Control Panel */}
+      <div style={{ 
+        marginBottom: '20px', 
+        display: 'flex', 
+        gap: '10px', 
+        flexWrap: 'wrap',
+        padding: '16px',
+        background: '#f8f9fa',
+        borderRadius: '8px'
+      }}>
+        {wrapOptions.map(option => (
+          <button
+            key={option}
+            onClick={() => setWrap(option)}
+            style={{
+              padding: '6px 12px',
+              background: wrap === option ? '#007bff' : '#e9ecef',
+              color: wrap === option ? 'white' : '#333',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '12px'
+            }}
+          >
+            {option}
+          </button>
+        ))}
+        
+        <span style={{ margin: '0 8px', alignSelf: 'center', fontSize: '12px', color: '#666' }}>Gap:</span>
+        {gapOptions.map(option => (
+          <button
+            key={option}
+            onClick={() => setGap(option)}
+            style={{
+              padding: '6px 12px',
+              background: gap === option ? '#007bff' : '#e9ecef',
+              color: gap === option ? 'white' : '#333',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '12px'
+            }}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
+
+      {/* Stack Layout Demo */}
+      <div style={{
+        display: 'flex',
+        flexDirection: direction === 'vertical' ? 'column' : 'row',
+        flexWrap: wrap === 'Wrapping' ? 'wrap' : 'nowrap',
+        gap: gap,
+        alignItems: align,
+        padding: '20px',
+        background: '#fff',
+        border: '1px solid #ddd',
+        borderRadius: '8px',
+        minHeight: '120px'
+      }}>
+        <div style={{ background: '#20599C', width: '100px', height: '60px', borderRadius: '4px' }}></div>
+        <div style={{ background: '#20599C', width: '60px', height: '60px', borderRadius: '4px' }}></div>
+        <div style={{ background: '#20599C', width: '80px', height: '60px', borderRadius: '4px' }}></div>
+        <div style={{ background: '#20599C', width: '120px', height: '60px', borderRadius: '4px' }}></div>
+        <div style={{ background: '#20599C', width: '90px', height: '60px', borderRadius: '4px' }}></div>
+      </div>
+
+      <p style={{ marginTop: '16px', fontSize: '14px', color: '#666' }}>
+        Use to display children horizontally in a row. Based on CSS Flexbox.
+      </p>
+      <p style={{ fontSize: '12px', color: '#999' }}>
+        The default wrapping behavior of children can be overridden using the <code>wrap</code> prop.
+      </p>
+    </div>
+  );
+}
+```
+
+<CodeSandboxButton 
+  title="Stack Layout Component"
+  code={`function StackLayoutExample() {
+  const [wrap, setWrap] = useState('Non-wrapping');
+  const [gap, setGap] = useState('16px');
+  const [align, setAlign] = useState('start');
+  const [direction, setDirection] = useState('horizontal');
+
+  const wrapOptions = ['Non-wrapping', 'Wrapping'];
+  const gapOptions = ['0px', '8px', '16px', '24px'];
+  const alignOptions = ['start', 'center', 'end', 'stretch'];
+  const directionOptions = ['horizontal', 'vertical'];
+
+  return (
+    <div style={{ padding: '20px' }}>
+      {/* Control Panel */}
+      <div style={{ 
+        marginBottom: '20px', 
+        display: 'flex', 
+        gap: '10px', 
+        flexWrap: 'wrap',
+        padding: '16px',
+        background: '#f8f9fa',
+        borderRadius: '8px'
+      }}>
+        {wrapOptions.map(option => (
+          <button
+            key={option}
+            onClick={() => setWrap(option)}
+            style={{
+              padding: '6px 12px',
+              background: wrap === option ? '#007bff' : '#e9ecef',
+              color: wrap === option ? 'white' : '#333',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '12px'
+            }}
+          >
+            {option}
+          </button>
+        ))}
+        
+        <span style={{ margin: '0 8px', alignSelf: 'center', fontSize: '12px', color: '#666' }}>Gap:</span>
+        {gapOptions.map(option => (
+          <button
+            key={option}
+            onClick={() => setGap(option)}
+            style={{
+              padding: '6px 12px',
+              background: gap === option ? '#007bff' : '#e9ecef',
+              color: gap === option ? 'white' : '#333',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '12px'
+            }}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
+
+      {/* Stack Layout Demo */}
+      <div style={{
+        display: 'flex',
+        flexDirection: direction === 'vertical' ? 'column' : 'row',
+        flexWrap: wrap === 'Wrapping' ? 'wrap' : 'nowrap',
+        gap: gap,
+        alignItems: align,
+        padding: '20px',
+        background: '#fff',
+        border: '1px solid #ddd',
+        borderRadius: '8px',
+        minHeight: '120px'
+      }}>
+        <div style={{ background: '#20599C', width: '100px', height: '60px', borderRadius: '4px' }}></div>
+        <div style={{ background: '#20599C', width: '60px', height: '60px', borderRadius: '4px' }}></div>
+        <div style={{ background: '#20599C', width: '80px', height: '60px', borderRadius: '4px' }}></div>
+        <div style={{ background: '#20599C', width: '120px', height: '60px', borderRadius: '4px' }}></div>
+        <div style={{ background: '#20599C', width: '90px', height: '60px', borderRadius: '4px' }}></div>
+      </div>
+
+      <p style={{ marginTop: '16px', fontSize: '14px', color: '#666' }}>
+        Use to display children horizontally in a row. Based on CSS Flexbox.
+      </p>
+      <p style={{ fontSize: '12px', color: '#999' }}>
+        The default wrapping behavior of children can be overridden using the <code>wrap</code> prop.
+      </p>
+    </div>
+  );
+}`}
+/>

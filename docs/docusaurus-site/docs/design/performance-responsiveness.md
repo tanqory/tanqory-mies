@@ -1,4 +1,4 @@
-# Performance & Responsiveness
+# Speed
 
 Tanqory Mies prioritizes performance as a core design feature, ensuring fast, responsive experiences across all devices and network conditions.
 

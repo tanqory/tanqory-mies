@@ -1,4 +1,4 @@
-# Motion & Feedback
+# Animations
 
 Tanqory Mies uses purposeful motion and immediate feedback to create responsive, delightful user experiences that guide and inform.
 

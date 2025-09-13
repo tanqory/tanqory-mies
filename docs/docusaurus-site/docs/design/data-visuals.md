@@ -1,4 +1,4 @@
-# Data Visuals
+# Charts
 
 Tanqory Mies provides a systematic approach to data visualization that ensures clarity, accessibility, and meaningful insights across all platforms.
 

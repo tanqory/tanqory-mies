@@ -1,4 +1,4 @@
-# Iconography
+# Icons
 
 Tanqory Mies uses a curated icon system that communicates clearly, scales beautifully, and maintains consistency across all platforms.
 

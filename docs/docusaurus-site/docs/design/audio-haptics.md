@@ -1,4 +1,4 @@
-# Audio & Haptics
+# Sound & Touch
 
 Tanqory Mies incorporates thoughtful audio and haptic feedback to enhance user experience through multiple sensory channels while maintaining accessibility and user control.
 

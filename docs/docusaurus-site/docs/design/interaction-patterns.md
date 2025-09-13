@@ -1,4 +1,4 @@
-# Interaction Patterns
+# Interactions
 
 Tanqory Mies establishes consistent, intuitive interaction patterns that create predictable and delightful user experiences across all platforms.
 

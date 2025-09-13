@@ -1,4 +1,4 @@
-# Typography System
+# Typography
 
 Tanqory Mies establishes a comprehensive typography system that ensures readability, hierarchy, and brand consistency across all platforms.
 
@@ -286,8 +286,8 @@ const Typography: React.FC<TypographyProps> = ({
   font-family: 'Inter', sans-serif;
 }
 
-.font-thai {
-  font-family: 'Inter', 'Noto Sans Thai', sans-serif;
+.font-singapore {
+  font-family: 'Inter', sans-serif;
 }
 
 .font-chinese {

@@ -1,4 +1,4 @@
-# Imagery & Illustration
+# Images
 
 Tanqory Mies uses purposeful imagery and illustration to enhance communication, support content, and create engaging user experiences.
 

@@ -19,24 +19,28 @@ const sidebars: SidebarsConfig = {
       label: 'Getting Started',
       items: [
         'getting-started',
-        'getting-started/mies-101',
+        'getting-started/mies',
         'getting-started/component-lifecycle',
         'getting-started/building-with-mies',
+        'getting-started/quick-start-code',
+        'getting-started/design-principles',
+        'getting-started/architecture-overview',
+        'getting-started/migration-guide',
+        'getting-started/contributing',
       ],
     },
     {
       type: 'category',
       label: 'Foundations',
       items: [
-        'foundations/overview',
-        {
-          type: 'category',
-          label: 'Design System',
-          items: [
-            'design-tokens',
-            'philosophy',
-          ],
-        },
+        'foundations/accessibility',
+        'foundations/localized-currency-formatting',
+        'foundations/information-architecture',
+        'foundations/internationalization',
+        'foundations/tanqory-experience-values',
+        'foundations/performance-scalability',
+        'foundations/security-privacy-basics',
+        'foundations/design-tokens-theming',
       ],
     },
     {
@@ -49,7 +53,19 @@ const sidebars: SidebarsConfig = {
       items: [
         'design/design-ethos',
         'design/visual-language',
-        'design/palette-contrast',
+        {
+          type: 'category',
+          label: 'Colors',
+          link: {
+            type: 'doc',
+            id: 'design/colors',
+          },
+          items: [
+            'design/colors/palettes',
+            'design/colors/using-color',
+            'design/colors/tokens',
+          ],
+        },
         'design/surface-layering',
         'design/iconography',
         'design/grid-spacing',
